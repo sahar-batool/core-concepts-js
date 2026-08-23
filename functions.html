@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>functions,closers,parameters</title>
+    <style>
+        body{
+            text-align: center;
+            
+        }
+        h1{
+            color: black;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        button{
+            padding: 10px;
+            color: black;
+            margin-bottom: 10px;
+        }
+        #incre-btn{
+            background-color: rgb(28, 223, 28);
+        }
+        #decre-btn{
+            background-color: rgb(223, 43, 43);
+        }
+    </style>
+</head>
+<body>
+    <h1>incrementation</h1>
+    <button id="incre-btn">increment</button>
+    <button id="decre-btn">decrement</button>
+    <div id="score">score:0</div>
+    <script>
+   
+
+          function main(){
+               let counter = 0;
+               function increment(){
+            document.getElementById('incre-btn').onclick = function(){
+                counter += 1;
+                let incre = document.getElementById('score').innerHTML = " score:" + counter; 
+                console.log(incre)}
+            
+            function decrement(){
+                document.getElementById('decre-btn').onclick = function(){
+                counter -= 1;
+                let decre = document.getElementById('score').innerHTML = " score:" + counter; 
+                console.log(decre)}
+        }
+        decrement()
+               }
+        increment()
+    }
+    main()
+    </script>
+</body>
+</html>
