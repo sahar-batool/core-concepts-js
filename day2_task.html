@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map(), filter(),reduce()</title>
+</head>
+<body>
+    
+<script>
+// const productNames = ["laptop", "desk", "phone", "chair", "monitor"]
+// console.log(productNames[1])
+
+const products = [
+  { id: 2, name: "Phone", price: 800, category: "electronics", inStock: false },
+  { id: 3, name: "Desk", price: 350, category: "furniture", inStock: true },
+  { id: 4, name: "Chair", price: 150, category: "furniture", inStock: true },
+  { id: 1, name: "Laptop", price: 1200, category: "electronics", inStock: true },
+  { id: 5, name: "Monitor", price: 400, category: "electronics", inStock: false },
+];
+// .map() return new array
+const productNames = products.map(product => product.name)
+console.log(productNames)
+
+const addingAbove = products.map(product => ({name:product.name, price:product.price}))
+console.log(addingAbove)
+
+const tax10 = products.map(product => product.price * 1.10)
+console.log(tax10)
+// filter() check condition if it goes true return new array if not undefined
+const available = products.filter(p => p.inStock)
+console.log(available)
+
+const catogery = products.filter(p => p.category === "electronics")
+console.log(catogery)
+
+const price = products.filter(p => p.price < 500 )
+console.log(price)
+
+// Reduce()
+const productP = products.map(product => product.price)
+console.log(productP)
+
+const totalPrice = productP.reduce((acc, curr) => acc + curr, 0)
+console.log(totalPrice)
+
+const category = products.map(product => product.category)
+const count = category.reduce((acc, category) => {
+    acc[category] = (acc[category] || 0) + 1; //here we can add justacc[products.category]
+    return acc;
+}, {}); // statting value {})
+console.log(count)
+
+const mostExpensive = products.reduce((acc, curr) => {
+    return curr.price > acc.price ? curr : acc;
+}, products[0]);
+console.log(mostExpensive)
+
+
+
+//example
+const scores = [
+  { player: "A", score: 42 },
+  { player: "B", score: 58 },
+  { player: "C", score: 30 },
+];
+
+const winner = scores.reduce((acc, curr) => {
+  return curr.score > acc.score ? curr : acc;
+}, scores[0]);
+
+console.log(winner);
+</script>
+</body>
+</html>
