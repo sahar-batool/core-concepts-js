@@ -13,10 +13,10 @@ let productslistelement=document.querySelector('.products')
 let currentSlug;
 let getProducts=( catSlug='') =>{
         let apiUrl;
-        if(catSlug=''){
+        if(catSlug===''){
             apiUrl='https://dummyjson.com/products'
         }else{
-            apiUrl='https://dummyjson.com/products/category/${catSlug}'
+            apiUrl=`https://dummyjson.com/products/category/${catSlug}`
         }
 
            fetch(apiUrl)

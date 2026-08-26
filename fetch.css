@@ -17,7 +17,7 @@ body {
 .productSection {
   max-width: 1200px;
   margin: 0 auto;
-  display: inline;
+  display: block;
 }
 
 .productSection > h1 {
@@ -30,7 +30,7 @@ body {
 /* Layout Row */
 .productRow {
 display: flex;
-  flex-direction: column;
+  flex-direction:row;
   gap: 1.5rem;
 }
 
@@ -72,7 +72,9 @@ aside li:hover {
 
 /* Products Section */
 .productList {
-  width: 100%;
+    flex: 1;
+  min-width: 0; 
+  background-color: #ffffff;
 }
 
 .productList h2 {
@@ -93,6 +95,7 @@ aside li:hover {
   background-color: #ffffff;
   border-radius: 8px;
   padding: 1rem;
+  box-shadow: 1px 2px 1px 2px;
 
 }
 
