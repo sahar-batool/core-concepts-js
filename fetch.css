@@ -1,0 +1,160 @@
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  color: #333;
+  line-height: 1.6;
+  padding: 2rem 1rem;
+}
+
+/* Main Section */
+.productSection {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: inline;
+}
+
+.productSection > h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  color: #1a1a1a;
+}
+
+/* Layout Row */
+.productRow {
+display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Category Sidebar */
+aside {
+  flex: 0 0 250px;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+aside h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  border-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #eee;
+  text-transform: capitalize;
+}
+
+aside ul {
+  list-style: none;
+}
+
+aside li {
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-transform: capitalize;
+}
+
+aside li:hover {
+  background-color: #f0f0f0;
+  color: #0066cc;
+}
+
+/* Products Section */
+.productList {
+  width: 100%;
+}
+
+.productList h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+
+/* Grid for Product Cards */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Product Card */
+.productitems {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+
+}
+
+.productitems:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.productitems img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.productitems h3 {
+  font-size: 1rem;
+  margin-top: 0.75rem;
+  color: #2c3e50;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Price & Button Layout */
+.priceCart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.priceCart b {
+  font-size: 1.1rem;
+  color: #2e7d32;
+}
+
+.priceCart button {
+  background-color: #0066cc;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.priceCart button:hover {
+  background-color: #004b99;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .productRow {
+    flex-direction: column;
+  }
+
+  aside {
+    width: 100%;
+    flex: auto;
+  }
+}
