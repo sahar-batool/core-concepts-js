@@ -9,16 +9,45 @@
         //fetch api usong .then .catch
 
 let categorylistelement=document.querySelector('aside ul')
+let productslistelement=document.querySelector('.products')
+let currentSlug;
+let getProducts=( catSlug='') =>{
+        let apiUrl;
+        if(catSlug=''){
+            apiUrl='https://dummyjson.com/products'
+        }else{
+            apiUrl='https://dummyjson.com/products/category/${catSlug}'
+        }
 
-
-        let getProducts=()=>{
-           fetch('https://dummyjson.com/products')
+           fetch(apiUrl)
            .then((res)=> res.json())
            .then((finalApi)=>{
-            console.log(finalApi)
-           }) 
+            let { products } = finalApi
+
+            let prolist = ''
+            products.forEach((object)=>{
+                prolist += `<div class="productitems">
+                <img src="${object.thumbnail}" alt"">
+                <div class="priceCart">
+                    <b>${object.price}</b>
+                    <button>Add to cart</button>
+                </div>
+                <h3>${object.title}</h3>
+            </div>`
+        
+            })
+
+            productslistelement.innerHTML=prolist
+         } ).catch((err)=>{
+        console.log(err)
+         })
+        
+
         }
-        getProducts()
+    
+    
+
+
 
 let getcategory=()=>{
            fetch('https://dummyjson.com/products/categories')
@@ -29,10 +58,23 @@ let getcategory=()=>{
             let catList = ''
             finalApi.forEach(element => {
                 console.log(element);
-                catList+= `<li>${element.name}</li>`
+                catList+= `<li class="${element.slug==currentSlug ? 'activeCat' : ''}"
+                     data-slug="${element.slug}">${element.name}</li>`
             })
-console.log(finalApi)
             categorylistelement.innerHTML= catList
            }) 
         }
+    
+
+    categorylistelement.addEventListener("click",(e)=>{
+        if(e.target.tagName=="LI"){
+            currentSlug=e.target.getAttribute('data-slug')
+
+            getProducts(currentSlug)
+            getcategory()
+        }
+    })
+
     getcategory()
+    getProducts()
+
