@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js modules</title>
+</head>
+<body>
+    <script>
+
+
+// const kiranaStore =(function(){
+//     let itemCount = 0
+//     const godown = []
+
+//     return{
+//         add(name){
+//             itemCount++
+//             godown.push(name)
+//             return `sharma ji stocked item ${name}`
+//         },
+//         count(){
+//             return itemCount
+//         },
+//         list(){
+//             return godown.slice()
+//         }
+//     }
+
+// })()
+// console.log(kiranaStore.add('tea packs 30'))
+// console.log(kiranaStore.add('10 packs oil'))
+// console.log("count: ", kiranaStore.count());
+// console.log("List: ", kiranaStore.list());
+
+// console.log(typeof kiranaStore.itemCount)
+// console.log(kirana.godown)
+
+///another example
+
+const AccountBook =(function(){
+    const recods = []
+    let accessLog = []
+
+    function logAccess(action){
+        accessLog.push(`[${new Date().toISOString().slice(0, 10)}] - ${action}`)
+    }
+    function store(doc){
+        logAccess(`Stored: ${doc}`)
+    }
+    function retrive(index){
+        logAccess(`Retrived index ${index}`)
+        return recods[index] || "not found"
+    }
+    function getRecodsCount(){
+        return recods.length
+    }
+    function getAccessLog(){
+        return accessLog.slice()
+    }
+
+    return {
+        store,
+        retrive,
+        count:getRecodsCount,
+        log:getAccessLog
+    }
+   
+})()
+
+AccountBook.store("sugar 10kg")
+AccountBook.store("rice 5kg")
+
+console.log("sharma ji retrive: ", AccountBook.retrive(0))
+console.log("sharma ji count: ", AccountBook.count)
+console.log("log length: ", AccountBook.log().length)
+console.log("log length: ", typeof AccountBook.logAccess)
+
+//simulation
+
+const sharmaaMart ={}
+
+sharmaaMart.inventory = (function(){
+  function unitPrice(totalPrice, quantity){
+    return totalPrice / quantity
+  }
+
+  function unitWeight(weightperitem, quantity){
+    return weightperitem * quantity
+
+  }
+// export unitproce and unitweight
+  return{unitPrice, unitPrice}
+})()
+
+
+    </script>
+</body>
+</html>
