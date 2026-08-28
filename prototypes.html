@@ -12,7 +12,8 @@
         const data1 = {
             name:"sam",
             rollNo:5,
-            percentage:85
+            percentage:85,
+            age:18
         }
         console.log(data1.name)
 
@@ -22,9 +23,11 @@
             percentage:79
         }
  data2.__proto__ = data1 //using this line we can access the properties of data1
- console.log(data2.rollNo)
- console.log(data2.name);
+//  console.log(data2.rollNo)
+//  console.log(data2.name);
+//  console.log(data2.age)
  ///////////classes :help us to dry //////////////////////////
+
 
  class Data{
     constructor(name,rollNo,percentage){
@@ -37,12 +40,25 @@
     }
  }
 
+
  const student1 = new Data("ali",2,82)
  const student2 = new Data("sam",3,90)
- const student3 = new Data("nam",4,88)
+ console.log(student1)
+//  console.log("this id student1 data: ", student1, student1.sayHi());
+//we can inhert properties of other classes using(super(name,age)) like
+class officeRecord extends Data{
+    constructor(name,rollNo,percentage,position,selection){
+        super(name,rollNo,percentage)
+        this.position = position;
+        this.selection = selection;
+    }
+    madam(){
+        console.log("hello iam madam")
+    }
+}
 
- console.log("this id student1 data: ", student1, student1.sayHi());
-
+const teacher = new officeRecord("nay",2,84,"1st","selected")
+console.log("admin recod of student1",teacher,teacher.madam())
  
     </script>
 </body>
