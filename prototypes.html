@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prototypes and classes</title>
+</head>
+<body>
+    <script>
+
+        //prototypes................................
+        const data1 = {
+            name:"sam",
+            rollNo:5,
+            percentage:85
+        }
+        console.log(data1.name)
+
+    
+        const data2 = {
+            name:"hanrry",
+            percentage:79
+        }
+ data2.__proto__ = data1 //using this line we can access the properties of data1
+ console.log(data2.rollNo)
+ console.log(data2.name);
+ ///////////classes :help us to dry //////////////////////////
+
+ class Data{
+    constructor(name,rollNo,percentage){
+        this.name = name;
+        this.rollNo = rollNo;
+        this.percentage = percentage;
+    }
+    sayHi(){
+        console.log("hi, this is classes in js")
+    }
+ }
+
+ const student1 = new Data("ali",2,82)
+ const student2 = new Data("sam",3,90)
+ const student3 = new Data("nam",4,88)
+
+ console.log("this id student1 data: ", student1, student1.sayHi());
+
+ 
+    </script>
+</body>
+</html>
