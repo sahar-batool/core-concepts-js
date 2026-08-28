@@ -1,55 +1,46 @@
-const input = document.querySelector('#input');
-const list = document.querySelector('#task-list');
+const list = document.querySelector("#task-list");
 
-let tasks = []; // the single source of truth for all task data
+export let tasks = [];
 
-// ---------- localStorage helpers ----------
-
-function saveTasks() {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+export function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function loadTasks() {
-    let saved = localStorage.getItem('tasks');
-    let check = saved ? JSON.parse(saved) : [];
-    return check;
+export function loadTasks() {
+  let saved = localStorage.getItem("tasks");
+  let check = saved ? JSON.parse(saved) : [];
+  return check;
 }
 
-// ---------- rendering ----------
+export function renderTask(taskObj) {
+  let taskContent = document.createElement("li");
 
-function renderTask(taskObj) {
-    let taskContent = document.createElement('li');
-    taskContent.textContent = taskObj.text;
+  let textSpan = document.createElement("span");
+  textSpan.textContent = taskObj.text;
+  taskContent.appendChild(textSpan);
 
-    let btn = document.createElement('button');
-    btn.textContent = 'Delete';
-    taskContent.appendChild(btn);
+  if (taskObj.completed) {
+    taskContent.classList.add("completed");
+  }
 
-    btn.addEventListener('click', function(e){
-        e.stopPropagation();
-        taskContent.remove();
+  let btn = document.createElement("button");
+  btn.textContent = "Delete";
+  taskContent.appendChild(btn);
+
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    taskContent.remove();
+    tasks = tasks.filter(function (t) {
+      return t !== taskObj;
     });
-
-    list.appendChild(taskContent);
-
-    taskContent.addEventListener('click', function(){
-        taskContent.classList.toggle('completed');
-    });
-}
-
-// ---------- add task ----------
-
-document.querySelector('#add-btn').addEventListener('click', function(){
-    let newTask = { text: input.value, completed: false };
-    tasks.push(newTask);
-    renderTask(newTask);
     saveTasks();
-    input.value = '';
-});
+  });
 
-// ---------- load on page start ----------
+  list.appendChild(taskContent);
 
-tasks = loadTasks();
-tasks.forEach(function(taskObj){
-    renderTask(taskObj);
-});
+  taskContent.addEventListener("click", function () {
+    taskObj.completed = !taskObj.completed;
+    taskContent.classList.toggle("completed");
+    saveTasks();
+  });
+}
