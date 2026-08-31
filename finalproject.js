@@ -8,6 +8,8 @@ class ExpenseTracker {
     this.renderExpense(expense);
     this.saveExpenses();
     this.updateTotal();
+    this.renderFilters();
+    this.updateCount();
   }
 // render expense
   renderExpense(expense) {
@@ -24,11 +26,14 @@ class ExpenseTracker {
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
     li.remove();
+    
     this.expenses = this.expenses.filter(function (item) {
       return item !== expense;
     });
     this.saveExpenses();
-    this.updateTotal(); 
+    this.updateTotal();
+    this.updateCount();
+    this.renderFilters();
     // we'll build this next
   });
 
@@ -72,6 +77,27 @@ class ExpenseTracker {
   }
   }
 
+renderFilters() {
+  const filterList = document.querySelector('#filters ul');
+  filterList.innerHTML = ''; // clear old buttons
+
+  const categories = this.expenses.map(expense => expense.category);
+  const uniqueCategories = [...new Set(categories)];
+
+  const allCategories = ["All", ...uniqueCategories]; // "All" always first
+
+  allCategories.forEach((category) => {
+    let li = document.createElement("li");
+    li.textContent = category;
+
+    li.addEventListener("click", () => {
+      this.filterByCategory(category);
+    });
+
+    filterList.appendChild(li);
+  });
+}
+
 
 filterByCategory(category){
   document.querySelector('#expense-list').innerHTML = '';
@@ -90,15 +116,14 @@ filterByCategory(category){
   });
 }
 
+updateCount() {
+   document.querySelector('#amount').textContent = `Entries: ${this.expenses.length}`;
+  
   }
+
+}
 //end class here
-const filterItems = document.querySelectorAll('#filters li');
-filterItems.forEach(function(item) {
-  item.addEventListener('click', function() {
-    const category = item.textContent;
-    myTracker.filterByCategory(category);
-  });
-});
+
 
 
 
@@ -110,6 +135,8 @@ savedExpenses.forEach(function (expense) {
   myTracker.renderExpense(expense);
 });
 myTracker.updateTotal()
+myTracker.renderFilters()
+myTracker.updateCount()
 
 document.querySelector('form').addEventListener('submit', function(e){
     e.preventDefault()
